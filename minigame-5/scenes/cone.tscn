@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkeqxhpma7nvd"]
+
+[ext_resource type="Script" uid="uid://cju4w8sqjuhoe" path="res://scripts/cone.gd" id="1_1pvhk"]
+[ext_resource type="PackedScene" uid="uid://gopwmf7brhcd" path="res://props/hazzard_cone_1.glb" id="1_04qlx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_04qlx"]
+bounce = 20.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pvhk"]
+size = Vector3(0.545166, 0.81829834, 0.53149414)
+
+[node name="Cone" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_04qlx")
+script = ExtResource("1_1pvhk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9535015, 0, -0.30138817, 0, 1, 0, 0.30138817, 0, 0.9535015, 0, 0.40420532, 0)
+shape = SubResource("BoxShape3D_1pvhk")
+
+[node name="hazzard_cone_12" parent="." instance=ExtResource("1_04qlx")]
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

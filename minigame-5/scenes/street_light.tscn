@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tqrxyu5eix5x"]
+
+[ext_resource type="PackedScene" uid="uid://bmg0upgd2sq2q" path="res://props/lamp_1.glb" id="1_epjdn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxo1v"]
+size = Vector3(0.41625977, 7, 0.43652344)
+
+[node name="StreetLight" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_gxo1v")
+
+[node name="lamp_12" parent="." instance=ExtResource("1_epjdn")]

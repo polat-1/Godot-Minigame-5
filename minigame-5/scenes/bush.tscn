@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce5wcc17u421b"]
+
+[ext_resource type="PackedScene" uid="uid://chxp701fdny3r" path="res://props/bush_1.glb" id="1_lad4k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehqem"]
+size = Vector3(0.6369629, 2.3985596, 0.5546875)
+
+[node name="Bush" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6992798, 0)
+shape = SubResource("BoxShape3D_ehqem")
+
+[node name="bush_1" parent="." instance=ExtResource("1_lad4k")]

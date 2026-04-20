@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2xf4wuh2u4t6"]
+[gd_scene load_steps=26 format=3 uid="uid://d2xf4wuh2u4t6"]
 
 [ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://scenes/vehicle_controller.tscn" id="1_lup1j"]
 [ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://scenes/arcade_car.tscn" id="2_oiv4q"]
@@ -11,7 +11,13 @@
 [ext_resource type="Script" uid="uid://cyva1e1qvfmmi" path="res://scripts/debug_ui.gd" id="8_1up8y"]
 [ext_resource type="PackedScene" uid="uid://d1erbx2oq3d43" path="res://scenes/ramp.tscn" id="11_yeqkk"]
 [ext_resource type="PackedScene" uid="uid://dgohjwo5nix6w" path="res://scenes/road.tscn" id="12_shk6o"]
+[ext_resource type="PackedScene" uid="uid://tljwmy8egh4f" path="res://scenes/barrier.tscn" id="13_avd8m"]
 [ext_resource type="PackedScene" uid="uid://d1ndnntjr4qhg" path="res://scenes/ground.tscn" id="13_qr4q7"]
+[ext_resource type="PackedScene" uid="uid://dkeqxhpma7nvd" path="res://scenes/cone.tscn" id="13_voycf"]
+[ext_resource type="PackedScene" uid="uid://tqrxyu5eix5x" path="res://scenes/street_light.tscn" id="14_yeqkk"]
+[ext_resource type="PackedScene" uid="uid://ce5wcc17u421b" path="res://scenes/bush.tscn" id="15_shk6o"]
+[ext_resource type="Script" uid="uid://bm5ob0vel8fia" path="res://scripts/finish_line.gd" id="16_7x2w3"]
+[ext_resource type="PackedScene" uid="uid://bk2nkg4hj6g" path="res://props/finish line.fbx" id="17_1qq5m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mgdar"]
 font_size = 40
@@ -33,6 +39,11 @@ background_mode = 2
 sky = SubResource("Sky_fr4m5")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7x2w3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smio7"]
+size = Vector3(7.07251, 5.9339294, 1)
 
 [node name="ArcadeDemo" type="Node3D"]
 
@@ -93,9 +104,11 @@ label_settings = SubResource("LabelSettings_mgdar")
 
 [node name="ConesText" type="Label" parent="GUI/TimeUI"]
 layout_mode = 2
+text = "cones: 0"
 label_settings = SubResource("LabelSettings_mgdar")
 
 [node name="GameOverUI" type="PanelContainer" parent="GUI"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_left = 187.0
@@ -155,3 +168,87 @@ environment = SubResource("Environment_ernvw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Track"]
 transform = Transform3D(0.527563, -0.46986827, 0.7077437, -1.33511e-08, 0.83311415, 0.5531012, -0.849516, -0.2917957, 0.43952015, 0, 2.26991, 0)
+
+[node name="Barrier" parent="Track" instance=ExtResource("13_avd8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.090839, -0.040459633, 5.6443806)
+
+[node name="Barrier2" parent="Track" instance=ExtResource("13_avd8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9091611, -0.040459633, 5.6443806)
+
+[node name="StreetLight" parent="Track" instance=ExtResource("14_yeqkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -18)
+
+[node name="Bush" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.581093)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="Bush2" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.43785)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="Bush3" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 366.7018, 0.15859127, 87.51896)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="Bush4" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.32407, 0.14287467, 95.634514)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="Bush5" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.92242, 0.16187894, 108.255714)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="Bush6" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.3162, 0.15754914, 123.67254)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="Bush7" parent="Track" instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 364.3815, 0.14373702, 145.48112)
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_7x2w3")
+gravity_scale = 6.467
+
+[node name="FinishLine" type="Area3D" parent="Track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.865802)
+script = ExtResource("16_7x2w3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Track/FinishLine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9839935, 0)
+shape = SubResource("BoxShape3D_smio7")
+
+[node name="finish line" parent="Track/FinishLine" instance=ExtResource("17_1qq5m")]
+
+[node name="Cone" parent="." instance=ExtResource("13_voycf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.955977, 0.10177043, -6.400634)
+
+[node name="Cone2" parent="." instance=ExtResource("13_voycf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.136649, 0.10224868, -11.238411)
+
+[node name="Cone3" parent="." instance=ExtResource("13_voycf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2712016, 0.10074952, -1.8673948)
+
+[node name="Cone4" parent="." instance=ExtResource("13_voycf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5401974, 0.10393575, -16.047907)
+
+[node name="Bush" parent="." instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23137285, 0.1200077, -57.35323)
+
+[node name="Bush2" parent="." instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36846438, 0.15706332, -82.931915)
+
+[node name="Bush3" parent="." instance=ExtResource("15_shk6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5877156, 0.20257644, -118.64313)
+
+[connection signal="body_entered" from="Track/FinishLine" to="Track/FinishLine" method="_on_area_3d_body_entered"]
